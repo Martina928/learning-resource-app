@@ -1,12 +1,17 @@
 <template>
+  <TheHeader title="Learning Resource"></TheHeader>
   <ResourceList :resources="storedResources"></ResourceList>
 </template>
 
 <script>
+import TheHeader from './components/layout/TheHeader.vue';
 import ResourceList from './components/ResourceList.vue';
 
 export default {
-  components: { ResourceList },
+  components: { 
+    ResourceList,
+    TheHeader 
+  },
   data() {
     return {
       storedResources: [
