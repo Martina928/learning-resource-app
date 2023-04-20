@@ -3,7 +3,9 @@
     <BaseButton @click="selectedTabClick('ResourceList')" :mode="resourceListMode">Resource List</BaseButton>
     <BaseButton @click="selectedTabClick('AddResource')" :mode="addResourceMode">Add Resource</BaseButton>
   </BaseCard>
-  <component :is="selectTab" :resources="storedResources"></component>
+  <keep-alive>
+    <component :is="selectTab" :resources="storedResources" @addResource="addResource"></component>
+  </keep-alive>
 </template>
 
 <script>
@@ -45,6 +47,15 @@ export default {
   methods: {
     selectedTabClick(cmp) {
       this.selectTab = cmp;
+    },
+    addResource(addTitle, addDescription, addUrl) {
+      const newResource = {
+        id: addTitle,
+        title: addTitle,
+        description: addDescription,
+        url: addUrl
+      };
+      this.storedResources.push(newResource);
     }
   },
 }

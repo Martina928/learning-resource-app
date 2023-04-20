@@ -18,9 +18,6 @@
 <script>
 export default {
   props: ['title', 'description', 'url'],
-  data() {
-
-  }
 } 
 </script>
 
