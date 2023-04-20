@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" :class="mode" @click="$emit('btnClick')">
+  <button :type="type" :class="mode">
     <slot></slot>
   </button>
 </template>
