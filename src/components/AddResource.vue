@@ -50,6 +50,10 @@ export default {
         return;
       }
       this.addResource(title, description, url);
+
+      this.$refs.title.value = '';
+      this.$refs.description.value = '';
+      this.$refs.url.value = '';
     },
     confirmError() {
       this.isInvalid = false;

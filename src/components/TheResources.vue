@@ -62,6 +62,7 @@ export default {
         url: addUrl
       };
       this.storedResources.push(newResource);
+      this.selectTab = 'ResourceList';
     }
   },
 }
