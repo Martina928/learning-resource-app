@@ -1,5 +1,5 @@
 <template>
-  <BaseDialog v-if="isInvalid" @close="confirmError">
+  <BaseDialog v-if="isInvalid" @close="confirmError" warning="Invalid Input">
     <template #default>
       <p>Unfortunately, at least one input value is invalid.</p>
       <p>Please check all inputs and make sure you enter at least a few characters.</p>
@@ -45,7 +45,6 @@ export default {
       let url = this.$refs.url.value;
 
       if (title.trim() === "" || description.trim() === "" || url.trim() === "") {
-        console.log(this.isInvalid)
         this.isInvalid = true;
         return;
       }

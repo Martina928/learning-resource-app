@@ -5,7 +5,7 @@
   <dialog open>
     <header>
       <slot name="header">
-        <h2>Invalid input</h2>
+        <h2>{{ warning }}</h2>
       </slot>
     </header>
     <section>
@@ -21,12 +21,12 @@
 
 <script>
 export default {
-  // props: {
-  //   warning: {
-  //     type: String,
-  //     required: false
-  //   }
-  // },
+  props: {
+    warning: {
+      type: String,
+      required: false
+    }
+  },
   emits: ['close']
 
 }
