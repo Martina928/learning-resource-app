@@ -49,7 +49,7 @@ export default {
         this.isInvalid = true;
         return;
       }
-      this.$emit("addResource", title, description, url);
+      this.addResource(title, description, url);
     },
     confirmError() {
       this.isInvalid = false;
