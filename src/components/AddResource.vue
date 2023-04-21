@@ -1,17 +1,27 @@
 <template>
+  <BaseDialog v-if="isInvalid" @close="confirmError">
+    <template #default>
+      <p>Unfortunately, at least one input value is invalid.</p>
+      <p>Please check all inputs and make sure you enter at least a few characters.</p>
+    </template>
+    <template #action>
+      <BaseButton @click="confirmError"></BaseButton>
+    </template>
+  </BaseDialog>
+
   <BaseCard>
-    <form @submit.prevent="onSubmit()">
+    <form @submit.prevent="onSubmit">
       <div class="form-control">
         <label for="title">Title</label>
-        <input type="text" name="title" id="title" v-model.trim="title">
+        <input type="text" name="title" id="title" ref="title">
       </div>
       <div class="form-control">
         <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10" v-model="description"></textarea>
+        <textarea name="description" id="description" cols="30" rows="10" ref="description"></textarea>
       </div>
       <div class="form-control">
         <label for="url">Link</label>
-        <input type="url" name="url" id="url" v-model.trim="url">
+        <input type="url" name="url" id="url" ref="url">
       </div>
       <div class="btn-wrapper">
         <BaseButton type="submit">Submit</BaseButton>
@@ -22,22 +32,29 @@
 
 <script>
 export default {
-  emits: ['addResource'],
+  inject: ["addResource"],
   data() {
     return {
-      title: "",
-      description: "",
-      url: ""
+      isInvalid: false,
     };
   },
   methods: {
     onSubmit() {
-      this.$emit('addResource', this.title, this.description, this.url)
-      this.title = '';
-      this.description = '';
-      this.url = '';
+      let title = this.$refs.title.value;
+      let description = this.$refs.description.value;
+      let url = this.$refs.url.value;
+
+      if (title.trim() === "" || description.trim() === "" || url.trim() === "") {
+        console.log(this.isInvalid)
+        this.isInvalid = true;
+        return;
+      }
+      this.$emit("addResource", title, description, url);
+    },
+    confirmError() {
+      this.isInvalid = false;
     }
-  }
+  },
 }
 </script>
 
