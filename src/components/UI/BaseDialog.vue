@@ -1,22 +1,24 @@
 <template>
-  <!-- backdrop to close the dialog -->
-  <div @click="$emit('close')"></div>
+  <Teleport to="body">
+    <!-- backdrop to close the dialog -->
+    <div @click="$emit('close')"></div>
 
-  <dialog open>
-    <header>
-      <slot name="header">
-        <h2>{{ warning }}</h2>
-      </slot>
-    </header>
-    <section>
-      <slot></slot>
-    </section>
-    <menu>
-      <slot name="actions">
-        <BaseButton @click="$emit('close')">Close</BaseButton>
-      </slot>
-    </menu>
-  </dialog>
+    <dialog open>
+      <header>
+        <slot name="header">
+          <h2>{{ warning }}</h2>
+        </slot>
+      </header>
+      <section>
+        <slot></slot>
+      </section>
+      <menu>
+        <slot name="actions">
+          <BaseButton @click="$emit('close')">Close</BaseButton>
+        </slot>
+      </menu>
+    </dialog>
+  </Teleport>
 </template>
 
 <script>
@@ -85,5 +87,4 @@ menu {
     width: 40rem;
   }
 }
-
 </style>
