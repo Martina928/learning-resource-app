@@ -40,6 +40,7 @@ export default {
     return {
       resources: this.storedResources,
       addResource: this.addedResource,
+      deleteResource: this.deletedResource,
     }
   },
   computed: {
@@ -63,6 +64,15 @@ export default {
       };
       this.storedResources.push(newResource);
       this.selectTab = 'ResourceList';
+    },
+    deletedResource(id) {
+      const idx = this.storedResources.findIndex(item => item.id === id);
+      this.storedResources.splice(idx, 1);
+
+      // this way will return a  new arr
+      // the others component still use the same arr
+      // this.storedResources = this.storedResources.filter(item => item.id !== id);
+
     }
   },
 }
